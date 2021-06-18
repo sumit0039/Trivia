@@ -24,7 +24,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         com.alibi.triviaapp.databinding.ActivitySplashScreenBinding splashScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen);
 
-
+        //Hide ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         // These lines of code describes setting of font to text
         Typeface typeface = ResourcesCompat.getFont(this, R.font.text_font);
         splashScreenBinding.textView.setTypeface(typeface);

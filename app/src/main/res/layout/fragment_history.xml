@@ -7,35 +7,31 @@
         android:layout_height="match_parent"
         tools:context=".fragments.HistoryFragment">
 
-        <Button
-            android:id="@+id/reset"
-            android:layout_width="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/colorAccent"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_history"
-            android:layout_alignParentRight="true" />
-        <Button
-            android:id="@+id/restartGame"
-            android:layout_width="wrap_content"
-            android:layout_margin="15dp"
-            android:textColor="@color/colorAccent"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_height="wrap_content"
-            android:text="@string/restart_game"
-            />
+            android:orientation="vertical"
+            android:layout_marginTop="55dp"
+            android:padding="5dp"
+            android:layout_marginBottom="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/reset"
             android:id="@+id/historyRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/history_view" />
-
+        </LinearLayout>
+        <Button
+            android:id="@+id/restartGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restart_game"
+            android:backgroundTint="@color/purple_200"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
 
     </RelativeLayout>
 </layout>

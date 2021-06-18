@@ -6,20 +6,19 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.alibi.triviaapp.R;
 import com.alibi.triviaapp.databinding.FragmentSummaryBinding;
-import com.alibi.triviaapp.model.GameDetails;
+import com.alibi.triviaapp.localdatabase.DbManager;
 import com.alibi.triviaapp.util.UserDetailsPrefrennce;
-import com.alibi.triviaapp.viewmodels.HistoryViewModel;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,13 +26,13 @@ import java.util.List;
 import java.util.Set;
 
 
-public class SummaryFragment extends Fragment {
+public class SummaryFragment extends Fragment{
 
 
     private FragmentSummaryBinding summaryBinding;
     private NavController navController;
     private List<String> months;
-
+    private boolean isFirstBackPressed = false;
     public SummaryFragment() {
         // Required empty public constructor
     }
@@ -54,7 +53,7 @@ public class SummaryFragment extends Fragment {
 
         navController = Navigation.findNavController(view);
         UserDetailsPrefrennce userDetailsPrefrennce = new UserDetailsPrefrennce(requireContext());
-        HistoryViewModel historyViewModel = new ViewModelProvider(requireActivity()).get(HistoryViewModel.class);
+        //HistoryViewModel historyViewModel = new ViewModelProvider(requireActivity()).get(HistoryViewModel.class);
         months = new ArrayList<>();
 
         addMonths();
@@ -76,8 +75,11 @@ public class SummaryFragment extends Fragment {
         String date = formatDate(localDateTime);
 
         // creating details related to history page
-        GameDetails gameDetails = new GameDetails(1, date, name, bestCricketer, combinedColors);
-        historyViewModel.addGameDetailsToHistoryRepo(gameDetails);
+        //        GameDetails gameDetails = new GameDetails(date, name, bestCricketer, combinedColors);
+        //        historyViewModel.addGameDetailsToHistoryRepo(gameDetails);
+        String result = addGameDetails(date, name, bestCricketer, combinedColors);
+        Toast.makeText(requireContext(), result, Toast.LENGTH_SHORT).show();
+
 
         // onClick of finish button
         summaryBinding.finish.setOnClickListener(v -> {
@@ -100,9 +102,14 @@ public class SummaryFragment extends Fragment {
         // onClick of history button
         summaryBinding.history.setOnClickListener(v -> navController.navigate(R.id.action_summaryFragment_to_historyFragment));
 
-        summaryBinding.setHistoryViewModel(historyViewModel);
 
     }
+
+    private String addGameDetails(String date, String name, String bestCricketer, String combinedColors) {
+        DbManager dbManager = new DbManager(requireContext());
+        return dbManager.addGameDetails(date, name, bestCricketer, combinedColors);
+    }
+
 
     // Disables back button on current fragment
     @Override
@@ -152,5 +159,8 @@ public class SummaryFragment extends Fragment {
             currentDate = currentDate + date + "th " + months.get(month) + " " + hour + ":" + minute + " " + "am";
         }
         return currentDate;
+
     }
+
+
 }

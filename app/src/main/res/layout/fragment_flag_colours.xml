@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FlagColoursFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="10dp">
+
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
@@ -20,7 +27,6 @@
         android:layout_below="@id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:text="@string/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textSize="18sp" />
@@ -30,7 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/white"
-        android:layout_margin="15dp"
         android:text="@string/yellow"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textSize="18sp" />
@@ -40,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/yellow"
-        android:layout_margin="15dp"
         android:text="@string/orange"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textSize="18sp" />
@@ -50,11 +54,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/orange"
-        android:layout_margin="15dp"
         android:text="@string/green"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textSize="18sp" />
-
+    </LinearLayout>
     <Button
         android:id="@+id/next"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"

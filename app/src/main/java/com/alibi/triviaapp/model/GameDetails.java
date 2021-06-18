@@ -7,7 +7,7 @@ public class GameDetails {
     public static DiffUtil.ItemCallback<GameDetails> itemCallback = new DiffUtil.ItemCallback<GameDetails>() {
         @Override
         public boolean areItemsTheSame(GameDetails oldItem, GameDetails newItem) {
-            return oldItem.getDate().equals(newItem.getDate());
+            return oldItem.getGameNumber() == newItem.getGameNumber();
         }
 
         @Override
@@ -21,8 +21,24 @@ public class GameDetails {
     String bestCricketer;
     String flagColors;
 
+//    public GameDetails(int gameNumber, String date, String name, String bestCricketer, String flagColors) {
+//        this.gameNumber = gameNumber;
+//        this.date = date;
+//        this.name = name;
+//        this.bestCricketer = bestCricketer;
+//        this.flagColors = flagColors;
+//    }
+
+
     public GameDetails(int gameNumber, String date, String name, String bestCricketer, String flagColors) {
         this.gameNumber = gameNumber;
+        this.date = date;
+        this.name = name;
+        this.bestCricketer = bestCricketer;
+        this.flagColors = flagColors;
+    }
+
+    public GameDetails(String date, String name, String bestCricketer, String flagColors) {
         this.date = date;
         this.name = name;
         this.bestCricketer = bestCricketer;
@@ -86,6 +102,7 @@ public class GameDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameDetails that = (GameDetails) o;
-        return getDate().equals(that.getDate());
+        return getGameNumber() == that.getGameNumber();
     }
+
 }
